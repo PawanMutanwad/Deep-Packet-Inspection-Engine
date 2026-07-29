@@ -43,4 +43,54 @@ public class TCPParser {
                 headerLength
         );
     }
+
+    /**
+     * Extracts the TCP payload from a raw packet (assumes IPv4).
+     */
+    public byte[] extractPayload(byte[] data) {
+
+        return extractPayload(data, 4);
+    }
+
+    /**
+     * Extracts the TCP payload from a raw packet.
+     *
+     * @param data      full packet bytes (Ethernet + IP + TCP + payload)
+     * @param ipVersion 4 for IPv4, 6 for IPv6
+     * @return the TCP payload bytes, or empty array if none
+     */
+    public byte[] extractPayload(byte[] data, int ipVersion) {
+
+        int ipOffset = 14;
+
+        int ipHeaderLength;
+
+        if (ipVersion == 6) {
+            ipHeaderLength = 40;
+        } else {
+            ipHeaderLength = (data[ipOffset] & 0x0F) * 4;
+        }
+
+        int tcpOffset = ipOffset + ipHeaderLength;
+
+        if (tcpOffset + 13 > data.length) {
+            return new byte[0];
+        }
+
+        int tcpHeaderLength =
+                ((data[tcpOffset + 12] >> 4) & 0x0F) * 4;
+
+        int payloadOffset = tcpOffset + tcpHeaderLength;
+
+        if (payloadOffset >= data.length) {
+            return new byte[0];
+        }
+
+        byte[] payload = new byte[data.length - payloadOffset];
+
+        System.arraycopy(data, payloadOffset,
+                payload, 0, payload.length);
+
+        return payload;
+    }
 }

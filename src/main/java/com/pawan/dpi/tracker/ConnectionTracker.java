@@ -3,12 +3,12 @@ package com.pawan.dpi.tracker;
 import com.pawan.dpi.model.FiveTuple;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ConnectionTracker {
 
-    private final Map<FiveTuple, Flow> flowTable = new HashMap<>();
+    private final Map<FiveTuple, Flow> flowTable = new ConcurrentHashMap<>();
 
     public Flow getOrCreateFlow(FiveTuple fiveTuple) {
 

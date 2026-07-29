@@ -34,6 +34,14 @@ public class IPv6Packet {
         return nextHeader;
     }
 
+    public String getSourceIp() {
+        return sourceIp;
+    }
+
+    public String getDestinationIp() {
+        return destinationIp;
+    }
+
     @Override
     public String toString() {
 

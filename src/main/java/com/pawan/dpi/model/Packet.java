@@ -14,6 +14,10 @@ public class Packet {
         return header;
     }
 
+    public PacketHeader getPacketHeader() {
+        return header;
+    }
+
     public byte[] getData() {
         return data;
     }

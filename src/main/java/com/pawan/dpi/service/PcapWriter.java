@@ -36,7 +36,7 @@ public class PcapWriter implements Closeable {
         writeIntLE(header.getNetwork());
     }
 
-    public void writePacket(Packet packet) throws IOException {
+    public synchronized void writePacket(Packet packet) throws IOException {
 
         PacketHeader h = packet.getPacketHeader();
 

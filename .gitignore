@@ -1,11 +1,7 @@
 target/
-
 .idea/
-
 .vscode/
-
 *.class
-
 *.iml
-
 out/
+output/*.pcap

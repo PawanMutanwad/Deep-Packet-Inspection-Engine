@@ -1,0 +1,12 @@
+{
+  "blockedIps": [
+    "192.168.1.100"
+  ],
+  "blockedApplications": [
+    "YOUTUBE"
+  ],
+  "blockedDomains": [
+    "doubleclick.net",
+    "adservice.google.com"
+  ]
+}
